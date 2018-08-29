@@ -84,7 +84,6 @@ def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse
                           scope='conv3_1x1')
         end_points['features_B'] = aux_logits
         # GAP
-        kernel_size = net.get_shape()[1:3]
         if kernel_size.is_fully_defined():
             aux_logits = slim.avg_pool2d(aux_logits, kernel_size, padding='VALID',
                                   scope='AvgPool_1a')
