@@ -73,7 +73,8 @@ if __name__ == '__main__':
                                         'eval_dir': FLAGS. eval_dir, 'max_num_batches': FLAGS. max_num_batches}))
         for l in p:
             print(l.strip())
-
+            
+    '''
     print('################    export_inference_graph    ################')
     file_path = os.path.join(FLAGS.output_dir, 'exported_graphs/inference_graph.pb')
     p = os.popen(export_cmd.format(**{'model_name': FLAGS.model_name, 'dataset_name': FLAGS.dataset_name,
@@ -87,3 +88,4 @@ if __name__ == '__main__':
     print('################    inference    ################')
     p = os.popen(inference_cmd.format(**{'output_dir': FLAGS.output_dir, 'dataset_dir': FLAGS.dataset_dir,
                                          'inference_size': FLAGS.inference_size}))
+    '''
