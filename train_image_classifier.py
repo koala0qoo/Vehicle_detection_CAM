@@ -141,7 +141,7 @@ tf.app.flags.DEFINE_float(
     'label_smoothing', 0.0, 'The amount of label smoothing.')
 
 tf.app.flags.DEFINE_float(
-    'learning_rate_decay_factor', 0.94, 'Learning rate decay factor.')
+    'learning_rate_decay_factor', 0.93, 'Learning rate decay factor.')
 
 tf.app.flags.DEFINE_float(
     'num_epochs_per_decay', 2.0,
