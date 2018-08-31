@@ -139,6 +139,8 @@ if __name__ == '__main__':
                 n_top = 1
                 classes = np.argsort(-predictions_1)[:n_top]
                 scores = -np.sort(-softmax)[:n_top]
+                print(scores.shape)
+                print(classes)
 
                 # 生成heatmap
                 cam_A = cam_inception.CAMmap(feature_maps_1, predictions_1, n_top)
