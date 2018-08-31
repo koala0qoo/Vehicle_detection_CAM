@@ -141,8 +141,8 @@ if __name__ == '__main__':
                 scores = -np.sort(-softmax)[:n_top]
 
                 # 生成heatmap
-                cam_A = cam_inception.CAM(feature_maps_1, predictions_1, n_top)
-                cam_B = cam_inception.CAM(feature_maps_2, predictions_1, n_top)
+                cam_A = cam_inception.CAMmap(feature_maps_1, predictions_1, n_top)
+                cam_B = cam_inception.CAMmap(feature_maps_2, predictions_1, n_top)
                 cam = np.maximum(cam_A, cam_B)
                 (im_width, im_height) = image.size
                 cam_resize = bilinear(cam, im_height, im_width)
