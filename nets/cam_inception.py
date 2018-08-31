@@ -105,7 +105,7 @@ def CAMmap(feature_maps, predictions, n_top):
     print(tops.shape)
     print(tops[0])
     for i in range(n_top):
-        feature_map = feature_maps[0, :, :, tops[i]]
+        feature_map = feature_maps[0, :, :, tops[0][i]]
         print(feature_map.shape)
         heatmap[:, :, i] = (feature_map - feature_map.min())/(feature_map.max() - feature_map.min())
 
