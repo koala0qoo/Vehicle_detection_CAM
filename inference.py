@@ -1,8 +1,5 @@
 import argparse
 import os
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 import numpy as np
 import tensorflow as tf
@@ -96,7 +93,7 @@ if __name__ == '__main__':
             tf.import_graph_def(od_graph_def, name='')
 
     categories_index = {}
-    label_map = open(PATH_TO_LABELS, 'r')
+    label_map = open(PATH_TO_LABELS, 'r', encoding='utf-8')
     for line in label_map:
         cat = {}
         id = line.strip().split(":")[0]
