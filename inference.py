@@ -132,7 +132,7 @@ if __name__ == '__main__':
                 (predictions_1, feature_maps_1, predictions_2, feature_maps_2) = sess.run(
                     [logits, feature_maps_A, auxlogits, feature_maps_B],
                     feed_dict={image_tensor: image_np_expanded})
-                predictions = np.squeeze(predictions_1)
+                predictions_1 = np.squeeze(predictions_1)
                 softmax = np.exp(predictions_1)/np.sum(np.exp(predictions_1),axis=0)
                 #prediction = np.argmax(predictions)
 
