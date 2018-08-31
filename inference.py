@@ -161,7 +161,7 @@ if __name__ == '__main__':
                     heatmap.save(os.path.join(FLAGS.output_dir, 'test_{0}_heatmap_{1}.jpg'.format(i, j)))
 
                 # 生成bounding_boxes
-                threshold = 0.9
+                threshold = 0.5
                 boxes = cam_inception.bounding_box(cam_resize/255, threshold)
 
                 vis_util.visualize_boxes_and_labels_on_image_array(
@@ -171,6 +171,6 @@ if __name__ == '__main__':
                     scores,
                     category_index,
                     use_normalized_coordinates=True,
-                    min_score_thresh=.1,
+                    #min_score_thresh=.1,
                     line_thickness=6)
                 plt.imsave(os.path.join(FLAGS.output_dir, 'test_{0}_output.jpg'.format(i)), image_np)
