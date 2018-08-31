@@ -98,6 +98,7 @@ def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse
     return logits, end_points
 
 def CAMmap(feature_maps, predictions, n_top):
+    print(feature_maps.shape)
     map_size = feature_maps.shape[1:3]
     heatmap = np.zeros((map_size[0], map_size[1], n_top))
     tops = np.argsort(-predictions)
