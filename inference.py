@@ -117,6 +117,7 @@ if __name__ == '__main__':
             feature_maps_A = detection_graph.get_tensor_by_name('cam_classifier/A/conv3_1x1/Conv2D:0')
             auxlogits = detection_graph.get_tensor_by_name('cam_classifier/B/Flatten/flatten/Reshape:0')
             feature_maps_B = detection_graph.get_tensor_by_name('cam_classifier/B/conv3_1x1/Conv2D:0')
+            pred = detection_graph.get_tensor_by_name('cam_classifier/A/Predictions_A:0')
             for i in range(FLAGS.inference_size):
                 image = Image.open(os.path.join(FLAGS.dataset_dir, 'test_{0}.jpg'.format(i)))
                 height = image_tensor.get_shape()[1]
@@ -129,7 +130,7 @@ if __name__ == '__main__':
                 #image_resize_np = tf.subtract(image, 0.5)  image_resize_np = tf.multiply(image, 2.0)
 
                 image_np_expanded = np.expand_dims(image_resize_np, axis=0)
-                (predictions_1, feature_maps_1, predictions_2, feature_maps_2) = sess.run(
+                (class, pred, predictions_1, feature_maps_1, predictions_2, feature_maps_2) = sess.run(
                     [logits, feature_maps_A, auxlogits, feature_maps_B],
                     feed_dict={image_tensor: image_np_expanded})
                 predictions_1 = np.squeeze(predictions_1)
@@ -140,7 +141,7 @@ if __name__ == '__main__':
                 n_top = 1
                 classes = np.argsort(-predictions_1)[:n_top]
                 scores = -np.sort(-softmax)[:n_top]
-                print(classes)
+                print(class)
 
                 # 生成heatmap
                 cam_A = cam_inception.CAMmap(feature_maps_1, predictions_1, n_top)
