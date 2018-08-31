@@ -102,7 +102,7 @@ def CAMmap(feature_maps, predictions, n_top):
     heatmap = np.zeros((map_size[0], map_size[1], n_top))
     tops = np.argsort(-predictions)
     for i in range(n_top):
-        feature_map = feature_maps[0, :, :, tops[0][i]]
+        feature_map = feature_maps[0, :, :, tops[i]]
         heatmap[:, :, i] = (feature_map - feature_map.min())/(feature_map.max() - feature_map.min())
 
     return heatmap
