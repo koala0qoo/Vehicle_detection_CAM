@@ -161,7 +161,7 @@ if __name__ == '__main__':
                     heatmap.save(os.path.join(FLAGS.output_dir, 'test_{0}_heatmap_{1}.jpg'.format(i, j)))
 
                 # 生成bounding_boxes
-                threshold = 0.5
+                threshold = 0.3
                 boxes = cam_inception.bounding_box(cam_resize/255, threshold)
 
                 vis_util.visualize_boxes_and_labels_on_image_array(
