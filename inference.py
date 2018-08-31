@@ -58,7 +58,7 @@ def bilinear(img, h, w):
     height, width, channels = img.shape
     if h == height and w == width:
         return img
-    new_img = np.zeros((h, w, channels), np.float32)
+    new_img = np.zeros((h, w, channels), np.unit8)
     scale_x = float(width) / w
     scale_y = float(height) / h
     for n in range(channels):
@@ -149,20 +149,20 @@ if __name__ == '__main__':
                 cam = np.maximum(cam_A, cam_B)
                 print(cam)
                 (im_width, im_height) = image.size
-                cam_resize = bilinear(cam, im_height, im_width)
+                cam_resize = bilinear(cam*255, im_height, im_width)
                 print(cam_resize)
 
                 # 保存heatmap
                 for j in range(n_top):
                     heatmap = cam_resize[:, :, j]
                     print(heatmap)
-                    heatmap = grey2rainbow(heatmap * 255)
+                    heatmap = grey2rainbow(heatmap)
                     heatmap = Image.fromarray(heatmap.astype('uint8')).convert('RGB')
                     heatmap.save(os.path.join(FLAGS.output_dir, 'test_{0}_heatmap_{1}.jpg'.format(i, j)))
 
                 # 生成bounding_boxes
                 threshold = 0.9
-                boxes = cam_inception.bounding_box(cam_resize, threshold)
+                boxes = cam_inception.bounding_box(cam_resize/255, threshold)
 
                 vis_util.visualize_boxes_and_labels_on_image_array(
                     image_np,
