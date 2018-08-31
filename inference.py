@@ -167,6 +167,6 @@ if __name__ == '__main__':
                     scores,
                     category_index,
                     use_normalized_coordinates=True,
-                    min_score_thresh=.3,
+                    min_score_thresh=.1,
                     line_thickness=6)
                 plt.imsave(os.path.join(FLAGS.output_dir, 'test_{0}_output.jpg'.format(i)), image_np)
