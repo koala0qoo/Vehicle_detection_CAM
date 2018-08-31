@@ -133,6 +133,7 @@ if __name__ == '__main__':
                     [logits, feature_maps_A, auxlogits, feature_maps_B],
                     feed_dict={image_tensor: image_np_expanded})
                 predictions_1 = np.squeeze(predictions_1)
+                print(predictions_1[:10])
                 softmax = np.exp(predictions_1)/np.sum(np.exp(predictions_1),axis=0)
                 #prediction = np.argmax(predictions)
 
@@ -148,6 +149,7 @@ if __name__ == '__main__':
                 print(cam)
                 (im_width, im_height) = image.size
                 cam_resize = bilinear(cam, im_height, im_width)
+                print(cam_resize)
 
                 # 保存heatmap
                 for j in range(n_top):
