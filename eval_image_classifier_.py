@@ -81,6 +81,7 @@ tf.app.flags.DEFINE_integer(
 
 FLAGS = tf.app.flags.FLAGS
 
+is_training_placeholder = tf.placeholder(tf.bool)
 
 def grey2rainbow(grey):
     h, w = grey.shape
