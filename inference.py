@@ -4,7 +4,6 @@ import os
 import numpy as np
 import tensorflow as tf
 from matplotlib import pyplot as plt
-import seaborn as sns
 from PIL import Image
 from preprocessing import inception_preprocessing
 from nets import cam_inception
