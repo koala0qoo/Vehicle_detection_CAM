@@ -152,7 +152,7 @@ if __name__ == '__main__':
                     heatmap = cam_resize[:, :, j]
                     heatmap = grey2rainbow(heatmap * 255)
                     heatmap = Image.fromarray(heatmap.astype('uint8')).convert('RGB')
-                    heatmap.save(os.path.join(FLAGS.output_dir, 'test_images/test_{0}_heatmap_{1}.jpg'.format(i, j)))
+                    heatmap.save(os.path.join(FLAGS.output_dir, 'test_{0}_heatmap_{1}.jpg'.format(i, j)))
 
                 # 生成bounding_boxes
                 threshold = 0.5
@@ -167,4 +167,4 @@ if __name__ == '__main__':
                     use_normalized_coordinates=True,
                     min_score_thresh=.3,
                     line_thickness=6)
-                plt.imsave(os.path.join(FLAGS.output_dir, 'test_images/test_{0}_output.jpg'.format(i)), image_np)
+                plt.imsave(os.path.join(FLAGS.output_dir, 'test_{0}_output.jpg'.format(i)), image_np)
