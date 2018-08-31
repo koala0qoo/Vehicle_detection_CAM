@@ -129,7 +129,7 @@ if __name__ == '__main__':
                 #image_resize_np = tf.subtract(image, 0.5)  image_resize_np = tf.multiply(image, 2.0)
 
                 image_np_expanded = np.expand_dims(image_resize_np, axis=0)
-                (predictions_1, feature_map_1, predictions_2, feature_map_2) = sess.run(
+                (predictions_1, feature_maps_1, predictions_2, feature_maps_2) = sess.run(
                     [logits, feature_maps_A, auxlogits, feature_maps_B],
                     feed_dict={image_tensor: image_np_expanded})
                 predictions = np.squeeze(predictions_1)
