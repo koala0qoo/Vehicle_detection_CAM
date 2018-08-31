@@ -124,7 +124,7 @@ if __name__ == '__main__':
                 image_resize = image.resize((width,height),Image.BILINEAR)
                 image_np = load_image_into_numpy_array(image)
                 image_resize_np = load_image_into_numpy_array(image_resize)
-                image_resize_np = (image_resize_np / 255 - 0.5) * 2
+                #image_resize_np = (image_resize_np / 255 - 0.5) * 2
                 #if image.dtype != tf.float32:      image = tf.image.convert_image_dtype(image, dtype=tf.float32)
                 #image_resize_np = tf.subtract(image, 0.5)  image_resize_np = tf.multiply(image, 2.0)
 
