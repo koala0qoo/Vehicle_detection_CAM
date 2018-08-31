@@ -92,7 +92,7 @@ if __name__ == '__main__':
             od_graph_def.ParseFromString(serialized_graph)
             tf.import_graph_def(od_graph_def, name='')
 
-    categories_index = {}
+    category_index = {}
     label_map = open(PATH_TO_LABELS, 'r', encoding='utf-8')
     for line in label_map:
         cat = {}
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         name = line.strip().split(":")[1]
         cat['id'] = id
         cat['name'] = name
-        categories_index[int(id)] = cat
+        category_index[int(id)] = cat
 
 
     def load_image_into_numpy_array(image):
