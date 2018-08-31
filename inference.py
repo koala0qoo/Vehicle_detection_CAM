@@ -58,7 +58,7 @@ def bilinear(img, h, w):
     height, width, channels = img.shape
     if h == height and w == width:
         return img
-    new_img = np.zeros((h, w, channels), np.unit8)
+    new_img = np.zeros((h, w, channels), np.uint8)
     scale_x = float(width) / w
     scale_y = float(height) / h
     for n in range(channels):
