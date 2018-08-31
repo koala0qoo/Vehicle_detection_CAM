@@ -139,7 +139,6 @@ if __name__ == '__main__':
                 n_top = 1
                 classes = np.argsort(-predictions_1)[:n_top]
                 scores = -np.sort(-softmax)[:n_top]
-                print(scores.shape)
                 print(classes)
 
                 # 生成heatmap
