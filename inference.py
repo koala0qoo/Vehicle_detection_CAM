@@ -163,6 +163,7 @@ if __name__ == '__main__':
                 # 生成bounding_boxes
                 threshold = 0.3
                 boxes = cam_inception.bounding_box(cam_resize/255, threshold)
+                print(boxes)
 
                 vis_util.visualize_boxes_and_labels_on_image_array(
                     image_np,
