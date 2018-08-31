@@ -198,7 +198,7 @@ def main(_):
     feed_dict_to_use = {is_training_placeholder: True}
 
   with tf.Session() as sess:
-    init = tf.global_variable_initializer()
+    init = tf.global_variables_initializer()
     sess.run(init)
     variables_to_restore = slim.get_variables_to_restore()
     init_fn = slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore)
