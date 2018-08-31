@@ -152,12 +152,13 @@ if __name__ == '__main__':
                 # 保存heatmap
                 for j in range(n_top):
                     heatmap = cam_resize[:, :, j]
+                    print(heatmap)
                     heatmap = grey2rainbow(heatmap * 255)
                     heatmap = Image.fromarray(heatmap.astype('uint8')).convert('RGB')
                     heatmap.save(os.path.join(FLAGS.output_dir, 'test_{0}_heatmap_{1}.jpg'.format(i, j)))
 
                 # 生成bounding_boxes
-                threshold = 0.5
+                threshold = 0.9
                 boxes = cam_inception.bounding_box(cam_resize, threshold)
 
                 vis_util.visualize_boxes_and_labels_on_image_array(
