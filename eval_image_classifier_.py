@@ -228,6 +228,19 @@ def main(_):
         # 生成bounding_boxes
         threshold = 0.5
         boxes = cam_inception.bounding_box(cam_resize, threshold)
+        
+        PATH_TO_LABELS = os.path.join(FLAGS.dataset_dir, 'labels.txt')
+
+        category_index = {}
+        label_map = open(PATH_TO_LABELS, 'r', encoding='utf-8')
+        for line in label_map:
+            cat = {}
+            id = line.strip().split(":")[0]
+            name = line.strip().split(":")[1]
+            cat['id'] = id
+            cat['name'] = name
+            category_index[int(id)] = cat       
+        
 
         vis_util.visualize_boxes_and_labels_on_image_array(
             image_np,
