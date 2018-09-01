@@ -198,8 +198,10 @@ def main(_):
     feed_dict_to_use = {is_training_placeholder: True}
 
   with tf.Session() as sess:
-    init = tf.global_variables_initializer()
-    sess.run(init)
+    init_op = tf.global_variables_initializer()
+    init_local_op = tf.local_variables_initializer()
+    sess.run(init_op)
+    sess.run(init_local_op)
     variables_to_restore = slim.get_model_variables()
     saver = tf.train.Saver(max_to_keep=5)
     saver.restore(sess, checkpoint_path)
