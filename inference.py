@@ -113,10 +113,10 @@ if __name__ == '__main__':
     with detection_graph.as_default():
         with tf.Session(graph=detection_graph) as sess:
             image_tensor = detection_graph.get_tensor_by_name('input:0')
-            logits = detection_graph.get_tensor_by_name('cam_classifier/A/Flatten/flatten/Reshape:0')
-            feature_maps_A = detection_graph.get_tensor_by_name('cam_classifier/A/conv3_1x1/Conv2D:0')
-            auxlogits = detection_graph.get_tensor_by_name('cam_classifier/B/Flatten/flatten/Reshape:0')
-            feature_maps_B = detection_graph.get_tensor_by_name('cam_classifier/B/conv3_1x1/Conv2D:0')
+            logits = detection_graph.get_tensor_by_name('cam_classifier/A/Flatten/flatten:0')
+            feature_maps_A = detection_graph.get_tensor_by_name('cam_classifier/A/conv3_1x1:0')
+            auxlogits = detection_graph.get_tensor_by_name('cam_classifier/B/Flatten/flatten:0')
+            feature_maps_B = detection_graph.get_tensor_by_name('cam_classifier/B/conv3_1x1:0')
             pred = detection_graph.get_tensor_by_name('cam_classifier/A/Predictions_A:0')
             for i in range(FLAGS.inference_size):
                 image = Image.open(os.path.join(FLAGS.dataset_dir, 'test_{0}.jpg'.format(i)))
