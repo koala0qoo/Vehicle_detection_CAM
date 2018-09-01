@@ -203,7 +203,7 @@ def main(_):
     sess.run(init_op)
     sess.run(init_local_op)
     variables_to_restore = slim.get_model_variables()
-    saver = tf.train.Saver(max_to_keep=5)
+    saver = tf.train.Saver(variables_to_restore, max_to_keep=5)
     saver.restore(sess, checkpoint_path)
     logging.debug('checkpoint restored from [{0}]'.format(checkpoint_path))
     #init_fn = slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore)
