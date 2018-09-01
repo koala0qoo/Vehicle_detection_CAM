@@ -26,16 +26,16 @@ def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse
     inception_c_feature = net
     with tf.variable_scope('cam_classifier/A'):
         net = slim.conv2d(inception_c_feature, 1024, [3, 3],
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           padding='SAME',
                           scope='conv1_3x3')
         net = slim.conv2d(net, 1024, [3, 3],
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           padding='SAME',
                           scope='conv2_3x3')
         net = slim.conv2d(net, num_classes, [1, 1],
                           activation_fn=None,
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           scope='conv3_1x1')
         end_points['features_A'] = net
         # GAP
@@ -71,16 +71,16 @@ def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse
 
         erased_feature = tf.where(tf.less(erase, delta), inception_c_feature, tf.zeros_like(inception_c_feature))
         aux_logits = slim.conv2d(erased_feature, 1024, [3, 3],
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           padding='SAME',
                           scope='conv1_3x3')
         aux_logits = slim.conv2d(aux_logits, 1024, [3, 3],
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           padding='SAME',
                           scope='conv2_3x3')
         aux_logits = slim.conv2d(aux_logits, num_classes, [1, 1],
                           activation_fn=None,
-                          weights_initializer=tf.truncated_normal_initializer(stddev=0.1),
+                          weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                           scope='conv3_1x1')
         end_points['features_B'] = aux_logits
         # GAP
