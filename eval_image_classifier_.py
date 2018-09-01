@@ -81,7 +81,6 @@ tf.app.flags.DEFINE_integer(
 
 FLAGS = tf.app.flags.FLAGS
 
-is_training_placeholder = tf.placeholder(tf.bool)
 
 def grey2rainbow(grey):
     h, w = grey.shape
@@ -141,6 +140,8 @@ def main(_):
     raise ValueError('You must supply the dataset directory with --dataset_dir')
 
   tf.logging.set_verbosity(tf.logging.INFO)
+  tf.reset_default_graph()
+  is_training_placeholder = tf.placeholder(tf.bool)
   with tf.Graph().as_default():
     tf_global_step = slim.get_or_create_global_step()
 
@@ -196,7 +197,7 @@ def main(_):
 
     checkpoint_path = FLAGS.checkpoint_path
     feed_dict_to_use = {is_training_placeholder: True}
-    variables_to_restore = slim.get_variables_to_restore(include=["InceptionV4", "cam_classifier"])
+    variables_to_restore = slim.get_variables_to_restore()
     init_op = tf.global_variables_initializer()
     init_local_op = tf.local_variables_initializer()
     saver = tf.train.Saver(variables_to_restore, max_to_keep=5)
