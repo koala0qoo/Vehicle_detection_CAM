@@ -202,7 +202,7 @@ def main(_):
     init_local_op = tf.local_variables_initializer()
     sess.run(init_op)
     sess.run(init_local_op)
-    variables_to_restore = slim.get_model_variables()
+    variables_to_restore = slim.get_variables_to_restore(include=["InceptionV4", "cam_classifier"])
     saver = tf.train.Saver(variables_to_restore, max_to_keep=5)
     saver.restore(sess, checkpoint_path)
     logging.debug('checkpoint restored from [{0}]'.format(checkpoint_path))
