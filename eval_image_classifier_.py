@@ -200,9 +200,12 @@ def main(_):
   with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
-    variables_to_restore = slim.get_variables_to_restore()
-    init_fn = slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore)
-    init_fn(sess)
+    variables_to_restore = slim.get_model_variables()
+    saver = tf.train.Saver(max_to_keep=5)
+    saver.restore(sess, checkpoint_path)
+    logging.debug('checkpoint restored from [{0}]'.format(checkpoint_path))
+    #init_fn = slim.assign_from_checkpoint_fn(checkpoint_path, variables_to_restore)
+    #init_fn(sess)
     for i in range(40):
         predictions_1, feature_map_a, feature_map_b = sess.run([logits, end_points['features_A'], end_points['features_B']], feet_dict=feed_dict_to_use)
         predictions_1 = np.squeeze(predictions_1)
