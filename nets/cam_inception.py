@@ -16,7 +16,7 @@ number_of_classes = 764
 
 
 # Define the model that we want to use -- specify to use only two classes at the last layer
-def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse=None, delta=0.6):
+def cam_inception(inputs, num_classes=number_of_classes, is_training=True, reuse=None, delta=0.8):
 
     with tf.variable_scope('InceptionV4',[inputs], reuse=reuse) as scope:
         with slim.arg_scope([slim.batch_norm, slim.dropout],
