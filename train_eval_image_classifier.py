@@ -26,9 +26,7 @@ def parse_args(check=True):
     parser.add_argument('--dataset_split_name', type=str, default='validation')
     parser.add_argument('--eval_dir', type=str, default='validation')
     parser.add_argument('--max_num_batches', type=int, default=128)
-
-    # inference
-    parser.add_argument('--inference_size', type=int, default=1)
+    
 
     FLAGS, unparsed = parser.parse_known_args()
     return FLAGS, unparsed
@@ -38,7 +36,7 @@ train_cmd = 'python ./train_image_classifier.py  --dataset_name={dataset_name} -
 eval_cmd = 'python ./eval_image_classifier.py --dataset_name={dataset_name} --dataset_dir={dataset_dir} --dataset_split_name={dataset_split_name} --model_name={model_name}   --checkpoint_path={checkpoint_path}  --eval_dir={eval_dir} --batch_size={batch_size}  --max_num_batches={max_num_batches}'
 export_cmd = 'python ./export_inference_graph.py --model_name={model_name} --dataset_name={dataset_name} --output_file={output_file} --dataset_dir={dataset_dir}'
 freeze_graph_cmd = 'python ./freeze_graph.py --input_graph={input_graph} --input_checkpoint={input_checkpoint} --output_graph={output_graph} --input_binary={input_binary} --output_node_name={output_node_name}'
-inference_cmd = 'python ./inference.py --output_dir={output_dir} --dataset_dir={dataset_dir} --inference_size={inference_size}'
+
 
 if __name__ == '__main__':
     FLAGS, unparsed = parse_args()
@@ -85,7 +83,4 @@ if __name__ == '__main__':
                                             'output_graph': file_path_, 'input_binary': True,
                                             'output_node_name': 'cam_classifier/A/conv3_1x1/Conv2D,cam_classifier/A/Flatten/flatten/Reshape'}))
 
-    print('################    inference    ################')
-    p = os.popen(inference_cmd.format(**{'output_dir': FLAGS.output_dir, 'dataset_dir': FLAGS.dataset_dir,
-                                         'inference_size': FLAGS.inference_size}))
     '''
